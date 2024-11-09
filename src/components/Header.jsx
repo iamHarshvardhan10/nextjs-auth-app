@@ -1,7 +1,10 @@
+"use client";
 import Link from "next/link";
 import React from "react";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
 const Header = () => {
+  const { isSignedIn } = useUser();
   return (
     <header className="bg-gradient-to-r from-blue-300 to-purple-400 shadow-lg">
       <div className="max-w-6xl mx-auto flex justify-between items-center p-3">
@@ -17,7 +20,7 @@ const Header = () => {
           <ul className="flex gap-4">
             <Link href={"/"}>Home</Link>
             <Link href={"/about"}>About</Link>
-            <Link href={"/sign-in"}>Sign in</Link>
+            {isSignedIn ? <UserButton /> : <SignInButton />}
           </ul>
         </nav>
       </div>
